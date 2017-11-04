@@ -1,0 +1,20 @@
+{
+  "extensionName": {
+    "message": "Menu demo",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Demonstrates the menus API.",
+    "description": "Description of the extension."
+  },
+
+  "jumpToAnchor": {
+    "message": "Jump to anchor (from click location)",
+    "description": ""
+  },
+
+  "jumpToAnchorWithSelection": {
+    "message": "Jump to anchor (from highlighted selection)",
+    "description": ""
+  }
+}

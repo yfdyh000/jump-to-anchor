@@ -37,5 +37,4 @@ on a page or adds context menu items to copy and bookmark the anchors, see
 The icon for this extension as available at
 [AMO](https://addons.mozilla.org/en-US/firefox/addon/jump-to-anchor/)
 was obtained from <http://commons.wikimedia.org/wiki/File:Hash-trans.png>
-under the Creative Commons Attribution-Share Alike 3.0 Unported license,
-but that icon is not bundled in this repository.
+under the Creative Commons Attribution-Share Alike 3.0 Unported license.
