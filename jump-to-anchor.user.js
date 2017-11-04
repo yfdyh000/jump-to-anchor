@@ -1,11 +1,39 @@
-/*globals self*/
-(function () {'use strict';
+// ==UserScript==
+// @name jump-to-anchor
+// @version 0.1
+// @description Context menu item to jump to the closest anchor to the selected text (if any) or to the right-click point otherwise.
+// @license MIT
+// @author eight04 <eight04@gmail.com>, YFdyh000
+// @incompatible chrome
+// @incompatible opera
+// @incompatible safari
+// @include *
+// @require https://greasyfork.org/scripts/33034-gm-context/code/GM_context.js?version=219427
+// @grant none
+// @namespace https://greasyfork.org/users/3017-yfdyh000
+// ==/UserScript==
 
-/*eslint-disable indent */
-// function l (s) {console.log(s);}
+/* global GM_context */
 
-var x, y;
+(function(){
+  const item = {
+    label: "Jump to the closest anchor",
+    onclick(e) {
+        jumpToAnchor(getSelection());
+    }
+  };
+  
+  GM_context.add({
+    context: ["page", "selection", "editable", "image", "link"],
+    items: [item],
+    oncontext(e) {
+    }
+  });
+function getSelection () {
+    return document.getSelection().toString();
+}
 
+let x, y;
 window.addEventListener('click', function (e) {
             // Avoid grabbing for the actual selection
             // Doesn't seem to execute on single click anyways
@@ -15,7 +43,6 @@ window.addEventListener('click', function (e) {
         y = e.clientY;
     }
 }, true);
-
 function jumpToAnchor (hasSelection) {
     x = Math.max(0, Math.min(window.innerWidth, x));
     y = Math.max(0, Math.min(window.innerHeight, y));
@@ -42,7 +69,6 @@ function jumpToAnchor (hasSelection) {
     function foundAnchor (nde) {
         if (nde.id || (nde.name && nde.nodeName.toLowerCase() === 'a')) {
             location.hash = '#' + (nde.id || nde.name);
-            // self.port.emit(nde.id);
             return true;
         }
     }
@@ -60,9 +86,4 @@ function jumpToAnchor (hasSelection) {
         }
     } while (node);
 }
-
-self.port.on('jumpToAnchor', function (hasSelection) {
-    jumpToAnchor(hasSelection);
-});
-
-}());
+})();
