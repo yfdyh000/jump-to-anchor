@@ -19,11 +19,11 @@
   const all_context = ["page", "selection", "editable", "image", "link"];
   const menuitem = {
     label: "Jump to anchor (from click location)",
-    onclick: () => jumpToAnchor()
+    onclick: function() { jumpToAnchor() }
   };
   const menuitem_selected = {
     label: "Jump to anchor (from highlighted selection)",
-    onclick: () => jumpToAnchor() // TODO: keep the selection
+    onclick: function () { jumpToAnchor() } // TODO: keep the selection
   };
 
   GM_context.add({
@@ -41,7 +41,7 @@
   function getSelection() {
     return document.getSelection().toString();
   }
-  let x, y;
+  var x, y;
   window.addEventListener('click', function (e) {
     // Avoid grabbing for the actual selection
     // Doesn't seem to execute on single click anyways
@@ -55,8 +55,8 @@
     x = Math.max(0, Math.min(window.innerWidth, x));
     y = Math.max(0, Math.min(window.innerHeight, y));
 
-    let node;
-    let hasSelection = getSelection();
+    var node;
+    var hasSelection = getSelection();
     if (hasSelection) {
       // For some reason, we can't just check ourselves here for
       //  getSelection().anchorNode, as it is always present
